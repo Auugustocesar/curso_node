@@ -1,20 +1,12 @@
-var express = require('express');
-var app = express();
+var app = require('./config/server')
 
-app.set('view engine', 'ejs');
+var rotaNoticias = require('./app/routes/noticias')(app);
 
-app.get('/', function(req, resp){
-	resp.render('home/index');
-});
+var rotaHome = require('./app/routes/home')(app);
 
-app.get('/formulario_inclusao_noticia', function(req, resp){
-	resp.render('admin/form_add_noticia');
-});
+var rotaFormulario = require('./app/routes/formulario_inclusao_noticia')(app);
 
-app.get('/noticias', function(req, resp){
-	resp.render('noticias/noticias');
-});
 
 app.listen(8081, function(){
-	console.log("Servidor Rodando com Express");
-})
+	console.log("Servidor ON");
+});
